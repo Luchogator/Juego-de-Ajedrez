@@ -1,0 +1,47 @@
+import pygame
+
+# Inicializar Pygame
+pygame.init()
+
+# Configuración de la ventana
+size = (512, 512)
+screen = pygame.display.set_mode(size)
+pygame.display.set_caption("Tablero de ajedrez")
+
+# Definir colores
+BLACK = (0, 0, 0)
+WHITE = (255, 255, 255)
+
+# Definir tamaño de cuadrado
+square_size = 64
+
+# Loop principal del juego
+done = False
+clock = pygame.time.Clock()
+
+while not done:
+    # Manejar eventos
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            done = True
+
+    # Limpia la pantalla
+    screen.fill(WHITE)
+
+    # Dibuja el tablero
+    for i in range(8):
+        for j in range(8):
+            rect = pygame.Rect(i * square_size, j * square_size, square_size, square_size)
+            if (i + j) % 2 == 0:
+                pygame.draw.rect(screen, BLACK, rect)
+            else:
+                pygame.draw.rect(screen, WHITE, rect)
+
+    # Actualiza la pantalla
+    pygame.display.flip()
+
+    # Control de FPS
+    clock.tick(60)
+
+# Salida del juego
+pygame.quit()
